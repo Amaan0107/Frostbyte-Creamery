@@ -1,8 +1,13 @@
 package com.pluralsight.models;
 
 public class IceCreamCake extends MenuItem {
-    private String size;
+
     public IceCreamCake(String name, double price, String size) {
-        super(name, price);
+        super(name, price, size);
+
+    }
+    @Override
+    public String getDescription() {
+        return getName() + " (" + getSize() + ") - $" + getPrice();
     }
 }
