@@ -1,4 +1,4 @@
 package com.pluralsight.models;
 
-public class IceCreamCake {
+public class IceCreamCake extends MenuItem {
 }
