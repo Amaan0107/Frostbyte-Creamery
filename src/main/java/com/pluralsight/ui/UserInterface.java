@@ -215,8 +215,28 @@ public class UserInterface {
             IceCreamCake cake = new IceCreamCake("Ice Cream Cake", basePrice, size);
             order.addMenuItem(cake);
             System.out.println(" Ice Cream Cake added to your order!");
+        }catch (Exception e) {
+            System.out.println("Invalid option.");
         }
     }
+    private void checkout() {
+        try{
+        System.out.println("\n======== Checkout ========");
+        if (order.getMenuItems().isEmpty()) {
+            System.out.println("No items in order!");
+            return;
+        }
+
+        order.getMenuItems().stream()
+                .map(MenuItem::getDescription)
+                .forEach(System.out::println);
+
+        System.out.printf("Total: $%.2f\n", order.CalculatePrice());
+        System.out.println("Thank you for your order!\n");
+    }catch (Exception e) {
+        System.out.println("Invalid option.");}
+    }
 }
+
 
 
