@@ -60,6 +60,7 @@ public class UserInterface {
             }
         }
     }
+
     public void newOrder() {
         order = new Order();
         boolean ordering = true;
@@ -85,6 +86,31 @@ public class UserInterface {
                 }
             }
 
+        }
+    }
+
+    public void orderIceCream() {
+        try {
+            System.out.println("Enter Cone/Bowl:");
+            String container = scanner.nextLine();
+
+            if (container.equalsIgnoreCase("cone")) {
+                System.out.println("You chose a Cone!");
+            } else if (container.equalsIgnoreCase("bowl")) {
+                System.out.println("You chose a Bowl!");
+            } else {
+                System.out.println("Invalid option. Please enter Cone or Bowl.");
+            }
+        }catch (Exception e) {
+            System.out.println("Invalid option.");
+        }
+        try {
+            System.out.println("Enter Size:");
+            String size = scanner.nextLine();
+
+            if (size.equalsIgnoreCase("Small")) {
+                
+            }
         }
     }
 }
