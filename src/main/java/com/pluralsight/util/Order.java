@@ -35,5 +35,17 @@ public class Order {
     public void addIceCreamCake(IceCreamCake iceCreamCake) {
         iceCreamCakes.add(iceCreamCake);
     }
+    public List<IceCream> getIceCreams() {
+        return iceCreams;
+    }
+    public List<Smoothie> getSmoothies() {
+        return smoothies;
+    }
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+    public List<IceCreamCake> getIceCreamCakes() {
+        return iceCreamCakes;
+    }
 
 }
