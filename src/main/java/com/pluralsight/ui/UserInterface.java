@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.models.IceCream;
 import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
 
@@ -84,6 +85,7 @@ public class UserInterface {
                     System.out.println("Order cancelled");
                     ordering = false;
                 }
+                default -> System.out.println("Invalid choice");
             }
 
         }
@@ -101,17 +103,19 @@ public class UserInterface {
             } else {
                 System.out.println("Invalid option. Please enter Cone or Bowl.");
             }
-        }catch (Exception e) {
-            System.out.println("Invalid option.");
-        }
-        try {
-            System.out.println("Enter Size:");
+
+            System.out.println("Enter Size (Small, Medium, Large):");
             String size = scanner.nextLine();
 
-            if (size.equalsIgnoreCase("Small")) {
-                
-            }
-        }
+            double basePrice = switch (size.toLowerCase()) {
+                case "small" -> 3.50;
+                case "medium" -> 4.50;
+                case "large" -> 5.50;
+                default -> 4.50;
+            };
+
+            IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
+
     }
 }
 
