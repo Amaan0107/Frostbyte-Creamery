@@ -14,6 +14,10 @@ public class UserInterface {
     private Scanner scanner;
     private Order order;
 
+    public UserInterface() {
+        scanner = new Scanner(System.in); // <-- initialize here
+    }
+
     public void showIntro() {
         String[] intro = {
                 "__          __  _                            _ \n" +
