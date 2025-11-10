@@ -9,5 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    private List<IceCream> iceCreams;
+    private List<Smoothie> smoothies;
+    private List<Topping> toppings;
+    private List<IceCreamCake> iceCreamCakes;
+
+    LocalDateTime orderDate;
 
 }
