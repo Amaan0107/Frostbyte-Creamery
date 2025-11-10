@@ -5,14 +5,12 @@ import java.util.List;
 
 public class IceCream extends MenuItem {
     private String container;
-    private int scoops;
     private List<Topping> toppings;
 
     public IceCream(String name, double price, String size, String container) {
         super(name, price, size);
         this.container = container;
-        this.scoops = scoops;
-        this.toppings = new ArrayList<>();
+
     }
 
     public String getContainer() {
@@ -25,6 +23,8 @@ public class IceCream extends MenuItem {
 
     @Override
     public String getDescription() {
-        return getName() + " (" + getSize() + ", " + getContainer() + ") - $" + getPrice();
+        return getName() + " (" + getSize() + ", " + container + ")" +
+                (getToppings().isEmpty() ? "" : " - Flavors/Toppings: " + String.join(", ", getToppings()))
+                + " - $" + getPrice();
     }
 }

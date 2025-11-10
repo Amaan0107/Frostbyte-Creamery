@@ -1,14 +1,19 @@
 package com.pluralsight.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class MenuItem {
     private String name;
     private double price;
     private String size;
+    private List<String> toppings;
 
     public MenuItem(String name, double price, String size) {
         this.name = name;
         this.price = price;
         this.size = size;
+        this.toppings = new ArrayList<String>();
     }
 
     public String getName() {
@@ -31,8 +36,18 @@ public abstract class MenuItem {
     public void setSize(String size) {
         this.size = size;
     }
+    public List<String> getToppings() {
+        return toppings;
+    }
+    public void addTopping(String topping) {
+       toppings.add(topping);
+    }
 
     public String getDescription() {
-        return name + " (" + size + ") - $" + price;
+        String toppingStr = toppings.isEmpty() ? "" :
+                " - Flavors/Toppings: " + String.join(", ", toppings);
+        return name + " (" + size + ")" + toppingStr + " - $" + price;
     }
+
 }
+

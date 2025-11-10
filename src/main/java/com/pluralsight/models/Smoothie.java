@@ -7,6 +7,8 @@ public class Smoothie extends MenuItem {
     }
     @Override
     public String getDescription() {
-        return getName() + " (" + getSize() + ") - $" + getPrice();
+        return getName() + " (" + getSize() + ")" +
+                (getToppings().isEmpty() ? "" : " - Flavors/Toppings: " + String.join(", ", getToppings()))
+                + " - $" + getPrice();
     }
 }
