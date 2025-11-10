@@ -16,4 +16,12 @@ public class Order {
 
     LocalDateTime orderDate;
 
+    public Order() {
+        iceCreams = new ArrayList<>();
+        smoothies = new ArrayList<>();
+        toppings = new ArrayList<>();
+        iceCreamCakes = new ArrayList<>();
+        orderDate = LocalDateTime.now();
+    }
+
 }
