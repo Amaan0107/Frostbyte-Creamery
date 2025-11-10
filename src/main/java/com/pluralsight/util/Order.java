@@ -1,26 +1,18 @@
 package com.pluralsight.util;
-import com.pluralsight.models.IceCream;
-import com.pluralsight.models.IceCreamCake;
-import com.pluralsight.models.Topping;
-import com.pluralsight.models.Smoothie;
+import com.pluralsight.models.MenuItem;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<IceCream> iceCreams;
-    private List<Smoothie> smoothies;
-    private List<Topping> toppings;
-    private List<IceCreamCake> iceCreamCakes;
+    private List<MenuItem> menuItems;
 
     LocalDateTime orderDate;
 
     public Order() {
-        iceCreams = new ArrayList<>();
-        smoothies = new ArrayList<>();
-        toppings = new ArrayList<>();
-        iceCreamCakes = new ArrayList<>();
+        menuItems = new ArrayList<>();
         orderDate = LocalDateTime.now();
     }
     public void addIceCream(IceCream iceCream) {
@@ -47,5 +39,6 @@ public class Order {
     public List<IceCreamCake> getIceCreamCakes() {
         return iceCreamCakes;
     }
+    boolean has
 
 }
