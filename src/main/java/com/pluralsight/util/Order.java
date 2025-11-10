@@ -23,5 +23,17 @@ public class Order {
         iceCreamCakes = new ArrayList<>();
         orderDate = LocalDateTime.now();
     }
+    public void addIceCream(IceCream iceCream) {
+        iceCreams.add(iceCream);
+    }
+    public void addSmoothie(Smoothie smoothie) {
+        smoothies.add(smoothie);
+    }
+    public void addTopping(Topping topping) {
+        toppings.add(topping);
+    }
+    public void addIceCreamCake(IceCreamCake iceCreamCake) {
+        iceCreamCakes.add(iceCreamCake);
+    }
 
 }
