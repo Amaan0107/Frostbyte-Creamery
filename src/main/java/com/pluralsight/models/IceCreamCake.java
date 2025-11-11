@@ -9,7 +9,6 @@ public class IceCreamCake extends MenuItem {
     @Override
     public String getDescription() {
         return getName() + " (" + getSize() + ")" +
-                (getToppings().isEmpty() ? "" : " - Flavors/Toppings: " + String.join(", ", getToppings()))
-                + " - $" + getPrice();
+                (getToppings().isEmpty() ? "" : " - Flavors/Toppings: " + String.join(", ", getToppings()));
     }
 }

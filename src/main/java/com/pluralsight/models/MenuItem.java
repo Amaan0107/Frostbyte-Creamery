@@ -46,7 +46,7 @@ public abstract class MenuItem {
     public String getDescription() {
         String toppingStr = toppings.isEmpty() ? "" :
                 " - Flavors/Toppings: " + String.join(", ", toppings);
-        return name + " (" + size + ")" + toppingStr + " - $" + price;
+        return name + " (" + size + ")" + toppingStr;
     }
 
 }

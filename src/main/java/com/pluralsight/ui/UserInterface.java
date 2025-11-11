@@ -14,7 +14,7 @@ public class UserInterface {
     private Order order;
 
     public UserInterface() {
-        scanner = new Scanner(System.in); // <-- initialize here
+        scanner = new Scanner(System.in);
     }
 
     public void showIntro() {
@@ -54,9 +54,13 @@ public class UserInterface {
         while (running) {
 
             System.out.println("======== Home Screen ========");
+            pause(100);
             System.out.println("1) Order");
+            pause(100);
             System.out.println("0) Exit");
+            pause(100);
             System.out.printf("Enter your choice: ");
+            pause(100);
             int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
@@ -77,12 +81,19 @@ public class UserInterface {
 
         while (ordering) {
             System.out.println("======== Order menu ========");
+            pause(100);
             System.out.println("1) Order Ice cream");
+            pause(100);
             System.out.println("2) Order Smoothie");
+            pause(100);
             System.out.println("3) Order Ice cream Cake");
+            pause(100);
             System.out.println("4) CheckOut");
+            pause(100);
             System.out.println("0) Cancel");
+            pause(100);
             System.out.printf("Enter your choice: ");
+            pause(100);
             int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
@@ -107,12 +118,15 @@ public class UserInterface {
     public void orderIceCream() {
         String container = null;
         try {
+            pause(100);
             System.out.println("Enter Cone/Bowl:");
             container = scanner.nextLine();
 
             if (container.equalsIgnoreCase("cone")) {
+                pause(100);
                 System.out.println("You chose a Cone!");
             } else if (container.equalsIgnoreCase("bowl")) {
+                pause(100);
                 System.out.println("You chose a Bowl!");
             } else {
                 System.out.println("Invalid option. Please enter Cone or Bowl.");
@@ -122,6 +136,7 @@ public class UserInterface {
         }
 
         try {
+            pause(100);
             System.out.println("Enter Size (Small, Medium, Large):");
             String size = scanner.nextLine();
 
@@ -134,6 +149,7 @@ public class UserInterface {
 
             IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
 
+            pause(100);
             System.out.println("Enter the flavors you want (separate by commas):");
             String inputFlavors = scanner.nextLine();
             String[] flavors = inputFlavors.split(",");
@@ -141,6 +157,7 @@ public class UserInterface {
                 iceCream.addTopping(flavor.trim());
             }
 
+            pause(100);
             System.out.println("Enter up to 3 toppings (separate by commas, or leave empty):");
             String inputToppings = scanner.nextLine();
             if (!inputToppings.isBlank()) {
@@ -149,9 +166,10 @@ public class UserInterface {
                     iceCream.addTopping(topping.trim());
                 }
             }
-
+            pause(100);
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
+                pause(100);
                 System.out.println("Enter extra toppings (separate by commas):");
                 String inputExtraToppings = scanner.nextLine();
                 if (!inputExtraToppings.isBlank()) {
@@ -160,18 +178,22 @@ public class UserInterface {
                         iceCream.addTopping(topping.trim());
                         iceCream.setPrice(iceCream.getPrice() + 0.50);
                     }
+                    pause(100);
                     System.out.println(" Added extra toppings: " + String.join(", ", extraToppings));
                     System.out.printf("New price: $%.2f\n", iceCream.getPrice());
                 }
             }
             order.addMenuItem(iceCream);
+            pause(100);
             System.out.println(" Ice Cream added to your order!");
         }catch (Exception e) {
             System.out.println("Invalid option.");
         }
     }
+
     public void orderSmoothie() {
         try {
+            pause(100);
             System.out.println("Enter Size (Small, Medium, Large):");
             String size = scanner.nextLine();
 
@@ -183,6 +205,7 @@ public class UserInterface {
             };
             Smoothie smoothie = new Smoothie("smoothie", basePrice, size);
 
+            pause(100);
             System.out.println("Enter the flavor:");
             String inputFlavors = scanner.nextLine().trim();
 
@@ -192,8 +215,10 @@ public class UserInterface {
                 System.out.println("Invalid option. Please enter a valid flavor.");
             }
 
+            pause(100);
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
+                pause(100);
                 System.out.println("Enter extra toppings (separate by commas):");
                 String inputExtraToppings = scanner.nextLine();
                 if (!inputExtraToppings.isBlank()) {
@@ -202,18 +227,22 @@ public class UserInterface {
                         smoothie.addTopping(topping.trim());
                         smoothie.setPrice(smoothie.getPrice() + 0.50);
                     }
+                    pause(100);
                     System.out.println(" Added extra toppings: " + String.join(", ", extraToppings));
                     System.out.printf("New price: $%.2f\n", smoothie.getPrice());
                 }
             }
             order.addMenuItem(smoothie);
+            pause(100);
             System.out.println(" Smoothie added to your order!");
         }catch (Exception e) {
             System.out.println("Invalid option.");
         }
     }
+
     public void orderIceCreamCake() {
         try {
+            pause(100);
             System.out.println("Enter Size (Small, Medium, Large):");
             String size = scanner.nextLine().trim();
 
@@ -225,15 +254,18 @@ public class UserInterface {
             };
             IceCreamCake cake = new IceCreamCake("Ice Cream Cake", basePrice, size);
             order.addMenuItem(cake);
+            pause(100);
             System.out.println(" Ice Cream Cake added to your order!");
         }catch (Exception e) {
             System.out.println("Invalid option.");
         }
     }
+
     private boolean checkout() {
         try{
         System.out.println("\n======== Checkout ========");
         if (order.getMenuItems().isEmpty()) {
+            pause(100);
             System.out.println("No items in order!");
             return true;
         }
@@ -241,7 +273,9 @@ public class UserInterface {
         order.getMenuItems().stream()
                 .map(MenuItem::getDescription)
                 .forEach(System.out::println);
-
+        pause(300);
+        System.out.println("Calculating your total!");
+        pause(500);
         System.out.printf("Total: $%.2f\n", order.CalculatePrice());
         System.out.println("Thank you for your order!\n");
     }catch (Exception e) {
@@ -249,6 +283,12 @@ public class UserInterface {
         return false;
     }
 
+    private void pause(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+        }
+    }
 }
 
 
