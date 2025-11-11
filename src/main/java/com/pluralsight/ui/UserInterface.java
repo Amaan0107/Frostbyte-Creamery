@@ -408,7 +408,9 @@ public class UserInterface {
         System.out.println("\n Toppings");
         System.out.println("------------------------------------------------------------");
         System.out.println("  Flavors:");
-        System.out.println("");
+        System.out.println("Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
+                           "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
+                           "KitKat Pieces, Gummy Bears");
         System.out.println("(Extra toppings are unlimited but cost .50 per topping)");
         System.out.println("=============================================================");
     }
