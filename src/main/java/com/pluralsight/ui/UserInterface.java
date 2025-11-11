@@ -281,52 +281,30 @@ public class UserInterface {
     }
 
     public void orderSmoothie() {
+        MenuItem smoothie = null;
         try {
-            pause(100);
-            System.out.println("Enter Size (Small, Medium, Large):");
-            String size = scanner.nextLine();
-
+            String size = askSize();
             double basePrice = switch (size.toLowerCase()) {
                 case "small" -> 5.55;
                 case "medium" -> 6.50;
                 case "large" -> 7.10;
                 default -> 5.50;
             };
-            Smoothie smoothie = new Smoothie("smoothie", basePrice, size);
-            pause(100);
-            System.out.println("Enter the flavors (separate with\",\"):");
-            String inputFlavors = scanner.nextLine().trim();
+            System.out.println("Available flavors: " + String.join(", ", smoothieFlavors));
+            chooseFlavorsWithValidation(smoothie, smoothieFlavors, 2);
 
-            if (!inputFlavors.isBlank()) {
-                smoothie.addTopping(inputFlavors.trim());
-            } else {
-                System.out.println("Invalid option. Please enter a valid flavor.");
-            }
+            System.out.println("Available toppings: " + String.join(", ", toppingsList));
+            chooseToppingsWithValidation(smoothie, 2);
 
-            pause(100);
-            System.out.println("Add extra toppings? (y/n):");
-            if (scanner.nextLine().equalsIgnoreCase("y")) {
-                pause(100);
-                System.out.println("Enter extra toppings (separate by commas):");
-                String inputExtraToppings = scanner.nextLine();
-                if (!inputExtraToppings.isBlank()) {
-                    String[] extraToppings = inputExtraToppings.split(",");
-                    for (String topping : extraToppings) {
-                        smoothie.addTopping(topping.trim());
-                        smoothie.setPrice(smoothie.getPrice() + 0.50);
-                    }
-                    pause(100);
-                    System.out.println(" Added extra toppings: " + String.join(", ", extraToppings));
-                    System.out.printf("New price: $%.2f\n", smoothie.getPrice());
-                }
-            }
+            extraToppings(smoothie);
+
             order.addMenuItem(smoothie);
-            pause(100);
-            System.out.println(" Smoothie added to your order!");
-        }catch (Exception e) {
+            System.out.println("Smoothie added to your order!");
+        }catch (Exception e){
             System.out.println("Invalid option.");
         }
-        }
+    }
+
 
     public void orderIceCreamCake() {
         try {
