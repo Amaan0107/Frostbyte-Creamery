@@ -6,7 +6,6 @@ import com.pluralsight.models.Smoothie;
 import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -62,7 +61,11 @@ public class UserInterface {
 
             switch (choice) {
                 case 1 -> newOrder();
-                case 0 -> running = false;
+                case 0 -> {
+                    if (running = false){
+                        System.out.println("Please visit FrostBytes again !!!");
+                    }
+                }
                 default -> System.out.println("Invalid choice");
             }
         }
@@ -86,7 +89,11 @@ public class UserInterface {
                 case 1 -> orderIceCream();
                 case 2 -> orderSmoothie();
                 case 3 -> orderIceCreamCake();
-                case 4 -> checkout();
+                case 4 -> {
+                    if (!checkout()){
+                        ordering = false;
+                    }
+                }
                 case 0 -> {
                     System.out.println("Order cancelled");
                     ordering = false;
@@ -223,12 +230,12 @@ public class UserInterface {
             System.out.println("Invalid option.");
         }
     }
-    private void checkout() {
+    private boolean checkout() {
         try{
         System.out.println("\n======== Checkout ========");
         if (order.getMenuItems().isEmpty()) {
             System.out.println("No items in order!");
-            return;
+            return true;
         }
 
         order.getMenuItems().stream()
@@ -239,7 +246,9 @@ public class UserInterface {
         System.out.println("Thank you for your order!\n");
     }catch (Exception e) {
         System.out.println("Invalid option.");}
+        return false;
     }
+
 }
 
 
