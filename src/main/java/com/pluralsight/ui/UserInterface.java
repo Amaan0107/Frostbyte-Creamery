@@ -7,6 +7,7 @@ import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +16,12 @@ public class UserInterface {
 
     private Scanner scanner;
     private Order order;
-    private String[] toppings;
+
+    private final List<String> iceCreamFlavors = Arrays.asList(
+            "Chocolate", "Vanilla", "Strawberry", "Mint Chocolate Chip",
+            "Cookies & Cream", "Rocky Road", "Pistachio", "Salted Caramel",
+            "Mango", "Coffee"
+    );
 
 
     public UserInterface() {
@@ -51,74 +57,80 @@ public class UserInterface {
     }
 
     public void start() {
-        showIntro();
-        shopMenu();
+        try {
 
-        boolean running = true;
-        while (running) {
+            boolean running = true;
+            while (running) {
 
-            System.out.println("======== Home Screen ========");
-            pause(100);
-            System.out.println("1) Order");
-            pause(100);
-            System.out.println("0) Exit");
-            pause(100);
-            System.out.printf("Enter your choice: ");
-            pause(100);
-            int choice = Integer.parseInt(scanner.nextLine());
+                System.out.println("======== Home Screen ========");
+                pause(100);
+                System.out.println("1) Order");
+                pause(100);
+                System.out.println("0) Exit");
+                pause(100);
+                System.out.printf("Enter your choice: ");
+                pause(100);
+                int choice = Integer.parseInt(scanner.nextLine());
 
-            switch (choice) {
-                case 1 -> newOrder();
-                case 0 -> {
-                    if (running = false){
-                        System.out.println("Please visit FrostBytes again !!!");
+                switch (choice) {
+                    case 1 -> newOrder();
+                    case 0 -> {
+                        if (running = false) {
+                            System.out.println("Please visit FrostBytes again !!!");
+                        }
                     }
+                    default -> System.out.println("Invalid choice");
                 }
-                default -> System.out.println("Invalid choice");
             }
+        }catch (Exception e) {
+            System.out.println("Invalid choice");
         }
     }
 
     public void newOrder() {
-        order = new Order();
-        boolean ordering = true;
+        try {
+            order = new Order();
+            boolean ordering = true;
 
-        while (ordering) {
-            System.out.println("======== Order menu ========");
-            pause(100);
-            System.out.println("1) Order Ice cream");
-            pause(100);
-            System.out.println("2) Order Smoothie");
-            pause(100);
-            System.out.println("3) Order Ice cream Cake");
-            pause(100);
-            System.out.println("4) CheckOut");
-            pause(100);
-            System.out.println("5) Menu");
-            pause(100);
-            System.out.println("0) Cancel");
-            pause(100);
-            System.out.printf("Enter your choice: ");
-            pause(100);
-            int choice = Integer.parseInt(scanner.nextLine());
+            while (ordering) {
+                System.out.println("======== Order menu ========");
+                pause(100);
+                System.out.println("1) Order Ice cream");
+                pause(100);
+                System.out.println("2) Order Smoothie");
+                pause(100);
+                System.out.println("3) Order Ice cream Cake");
+                pause(100);
+                System.out.println("4) CheckOut");
+                pause(100);
+                System.out.println("5) Menu");
+                pause(100);
+                System.out.println("0) Cancel");
+                pause(100);
+                System.out.printf("Enter your choice: ");
+                pause(100);
+                int choice = Integer.parseInt(scanner.nextLine());
 
-            switch (choice) {
-                case 1 -> orderIceCream();
-                case 2 -> orderSmoothie();
-                case 3 -> orderIceCreamCake();
-                case 4 -> {
-                    if (!checkout()){
+                switch (choice) {
+                    case 1 -> orderIceCream();
+                    case 2 -> orderSmoothie();
+                    case 3 -> orderIceCreamCake();
+                    case 4 -> {
+                        if (!checkout()) {
+                            ordering = false;
+                        }
+                    }
+                    case 5 -> shopMenu();
+                    case 0 -> {
+                        System.out.println("Order cancelled");
                         ordering = false;
                     }
+                    default -> System.out.println("Invalid choice");
                 }
-                case 5 -> shopMenu();
-                case 0 -> {
-                    System.out.println("Order cancelled");
-                    ordering = false;
-                }
-                default -> System.out.println("Invalid choice");
-            }
 
+            }
+        }catch (Exception e) {
+            System.out.println("Invalid choice");
         }
     }
 
@@ -195,7 +207,7 @@ public class UserInterface {
                 List<String> flavors = new ArrayList<>();
                 for (int i = 0; i < maxFlavors; i++) {
                     while (true) {
-                        System.out.printf("Enter Flavors %d (separate with\",\"): ", i + 1);
+                        System.out.printf("Enter Flavors (separate with\",\"): ", i + 1);
                         String input = scanner.nextLine().trim();
 
                         if (input.isEmpty()) {
@@ -218,31 +230,35 @@ public class UserInterface {
             }catch (Exception e){
                 System.out.println("Invalid option. ");
             }
-            pause(100);
-            System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
-                                          "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
-                                           "KitKat Pieces, Gummy Bears");
-            for (int i = 0; i < maxToppings; i++) {
-                List<String> toppings = new ArrayList<>();
-                while (true) {
-                    System.out.printf("Enter topping %d (separate with\",\"): ", i + 1);
-                    String input = scanner.nextLine().trim();
+            try {
+                pause(100);
+                System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
+                        "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
+                        "KitKat Pieces, Gummy Bears");
+                for (int i = 0; i < maxToppings; i++) {
+                    List<String> toppings = new ArrayList<>();
+                    while (true) {
+                        System.out.printf("Enter toppings (separate with\",\"): ", i + 1);
+                        String input = scanner.nextLine().trim();
 
-                    if (input.isEmpty()) {
+                        if (input.isEmpty()) {
+                            break;
+                        }
+
+                        String[] chosen = input.split(",\\s*");
+                        if (chosen.length > 1) {
+                            System.out.printf("You can only add %d topping(s) for %s size. Please enter again.\n",
+                                    maxToppings - i, size);
+                            continue;
+                        }
+
+                        toppings.add(i, chosen[0]);
                         break;
                     }
-
-                    String[] chosen = input.split(",\\s*");
-                    if (chosen.length > 1) {
-                        System.out.printf("You can only add %d topping(s) for %s size. Please enter again.\n",
-                                maxToppings - i, size);
-                        continue;
-                    }
-
-                    toppings.add(i, chosen[0]);
-                    break;
+                    System.out.println("Topping added!");
                 }
-                System.out.println("Topping added!");
+            }catch (Exception e){
+                System.out.println("Invalid option. ");
             }
 
             pause(100);
@@ -287,21 +303,21 @@ public class UserInterface {
             };
             Smoothie smoothie = new Smoothie("smoothie", basePrice, size);
             System.out.println("Smoothie flavors:Berry Blast, Tropical Mango, Green Detox, Banana Peanut Butter" +
-                                                 "Chocolate Banana");
+                    "Chocolate Banana");
             pause(100);
             System.out.println("Enter the flavors (separate with\",\"):");
             String inputFlavors = scanner.nextLine().trim();
 
-            if(!inputFlavors.isBlank()) {
-               smoothie.addTopping(inputFlavors.trim());
-            }else  {
+            if (!inputFlavors.isBlank()) {
+                smoothie.addTopping(inputFlavors.trim());
+            } else {
                 System.out.println("Invalid option. Please enter a valid flavor.");
             }
 
             pause(100);
             System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
-                                          "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
-                                          "KitKat Pieces, Gummy Bears");
+                    "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
+                    "KitKat Pieces, Gummy Bears");
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
                 pause(100);
@@ -324,7 +340,7 @@ public class UserInterface {
         }catch (Exception e) {
             System.out.println("Invalid option.");
         }
-    }
+        }
 
     public void orderIceCreamCake() {
         try {
@@ -386,6 +402,7 @@ public class UserInterface {
         } catch (InterruptedException e) {
         }
     }
+
     public void shopMenu(){
         String[] menu = {
 
@@ -442,6 +459,8 @@ public class UserInterface {
         pause(400);
     }
 }
+
+
 
 
 
