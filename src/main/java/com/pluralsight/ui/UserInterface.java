@@ -26,7 +26,11 @@ public class UserInterface {
             "Berry Blast", "Tropical Mango", "Green Detox",
             "Banana Peanut Butter", "Chocolate Banana"
     );
-
+    private final List<String> cakeFlavors = Arrays.asList(
+            "Chocolate Fudge Brownie", "Cookies & Cream Delight",
+            "Strawberry Shortcake", "Mint Chocolate Chip Crunch",
+            "Salted Caramel Pretzel"
+    );
 
 
     public UserInterface() {
