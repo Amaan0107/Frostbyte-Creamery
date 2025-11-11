@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class UserInterface {
 
     private Scanner scanner;
     private Order order;
     private String[] toppings;
+
 
     public UserInterface() {
         scanner = new Scanner(System.in);
@@ -91,6 +93,8 @@ public class UserInterface {
             pause(100);
             System.out.println("4) CheckOut");
             pause(100);
+            System.out.println("5) Menu");
+            pause(100);
             System.out.println("0) Cancel");
             pause(100);
             System.out.printf("Enter your choice: ");
@@ -106,6 +110,7 @@ public class UserInterface {
                         ordering = false;
                     }
                 }
+                case 5 -> shopMenu();
                 case 0 -> {
                     System.out.println("Order cancelled");
                     ordering = false;
@@ -373,7 +378,39 @@ public class UserInterface {
             } catch (InterruptedException e) {
             }
         }
-        System.out.println();
+        System.out.println("\n Ice Cream Size/Price/flavors");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("  Small      $3.50     (1 scoop, 1 topping max)");
+        System.out.println("  Medium     $4.50     (2 scoops, 2 toppings max)");
+        System.out.println("  Large      $5.50     (3 scoops, 3 toppings max)");
+        System.out.println("  Flavors:");
+        System.out.println("Chocolate, Vanilla, Strawberry, Mint Chocolate Chip " +
+                            "Cookies & Cream, Rocky Road, Pistachio, Salted Caramel" +
+                            "Mango, Coffee");
+        System.out.println("=============================================================");
+        System.out.println("\n Smoothie Size/Price/flavors");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("  Small      $5.55  ");
+        System.out.println("  Medium     $6.50  ");
+        System.out.println("  Large      $7.10  ");
+        System.out.println("  Flavors:");
+        System.out.println("Berry Blast, Tropical Mango, Green Detox, Banana Peanut Butter" +
+                            "Chocolate Banana");
+        System.out.println("=============================================================");
+        System.out.println("\n Cake Size/Price/flavors");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("  Small      $12.00");
+        System.out.println("  Medium     $16.50");
+        System.out.println("  Large      $22.50");
+        System.out.println("  Flavors:");
+        System.out.println("");
+        System.out.println("=============================================================");
+        System.out.println("\n Toppings");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("  Flavors:");
+        System.out.println("");
+        System.out.println("(Extra toppings are unlimited but cost .50 per topping)");
+        System.out.println("=============================================================");
     }
 }
 
