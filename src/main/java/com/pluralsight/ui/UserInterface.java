@@ -44,13 +44,13 @@ public class UserInterface {
 
     public void showIntro() {
         String[] intro = {
-             " ██╗    ██╗███████╗██╗     ██████╗  ██████╗ ███╗   ███╗███████╗",
-             " ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝",
-              "██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗",
-               "██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝",
-              "╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗",
-               "╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝" ,
-                        "           🍦 to FirstBytes Creamery 🍦     \n"};
+                " ██╗    ██╗███████╗██╗     ██████╗  ██████╗ ███╗   ███╗███████╗",
+                " ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝",
+                "██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗",
+                "██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝",
+                "╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗",
+                "╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝",
+                "           🍦 to FirstBytes Creamery 🍦     \n"};
         for (String line : intro) {
             System.out.println(line);
             try {
@@ -92,7 +92,7 @@ public class UserInterface {
                     default -> System.out.println("Invalid choice");
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Invalid choice");
         }
     }
@@ -110,7 +110,8 @@ public class UserInterface {
                 System.out.println("4) CheckOut");
                 System.out.println("5) Menu");
                 System.out.println("0) Cancel");
-                System.out.printf("Enter your choice: ");;
+                System.out.printf("Enter your choice: ");
+                ;
                 int choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
@@ -131,7 +132,7 @@ public class UserInterface {
                 }
 
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Invalid choice");
         }
     }
@@ -153,131 +154,30 @@ public class UserInterface {
         } catch (Exception e) {
             System.out.println("Invalid option.");
         }
+        String size = askSize();
+        double basePrice = switch (size.toLowerCase()) {
+            case "small" -> 3.50;
+            case "medium" -> 4.50;
+            case "large" -> 5.50;
+            default -> 4.50;
+        };
+        int maxFlavors = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase("medium") ? 2 : 3;
+        int maxToppings = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase("medium") ? 2 : 3;
 
-        try {
-            pause(100);
-            System.out.println("Enter Size (Small, Medium, Large):");
-            String size = scanner.nextLine();
+        IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
 
-            double basePrice = switch (size.toLowerCase()) {
-                case "small" -> 3.50;
-                case "medium" -> 4.50;
-                case "large" -> 5.50;
-                default -> 4.50;
-            };
-            int maxToppings = 0;
-            switch (size) {
-                case "small":
-                    maxToppings = 1;
-                    break;
-                case "medium":
-                    maxToppings = 2;
-                    break;
-                case "large":
-                    maxToppings = 3;
-                    break;
-                default:
-                    System.out.println("Invalid size. Defaulting to small.");
-                    maxToppings = 1;
-            }
-            int maxFlavors = 0;
-            switch (size) {
-                case "small":
-                    maxFlavors = 1;
-                    break;
-                case "medium":
-                    maxFlavors = 2;
-                    break;
-                case "large":
-                    maxFlavors = 3;
-                    break;
-                default:
-                    System.out.println("Invalid size. Defaulting to small.");
-                    maxFlavors = 1;
-            }
-            System.out.println("You may choose up to " + maxFlavors + " flavors.");
-            System.out.println("You may choose up to " + maxToppings + " toppings.");
 
-            IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
-            try {
-                pause(100);
-                List<String> flavors = new ArrayList<>();
-                for (int i = 0; i < maxFlavors; i++) {
-                    while (true) {
-                        System.out.printf("Enter Flavors (separate with\",\"): ", i + 1);
-                        String input = scanner.nextLine().trim();
+        System.out.println("Available flavors: " + String.join(", ", iceCreamFlavors));
+        chooseFlavorsWithValidation(iceCream, iceCreamFlavors, maxFlavors);
 
-                        if (input.isEmpty()) {
-                            break;
-                        }
 
-                        String[] chosen = input.split(",\\s*");
-                        if (chosen.length > 1) {
-                            System.out.printf("You can only add %d flavors(s) for %s size. Please enter again.\n",
-                                    maxFlavors - i, size);
-                            continue;
-                        }
+        System.out.println("Available toppings: " + String.join(", ", toppingsList));
+        chooseToppingsWithValidation(iceCream, maxToppings);
+// Extra toppings
+        extraToppings(iceCream);
 
-                        flavors.add(i, chosen[0]);
-                        break;
-
-                    }
-                    System.out.println("Ice cream Added!");
-                }
-            }catch (Exception e){
-                System.out.println("Invalid option. ");
-            }
-            try {
-                pause(100);
-                for (int i = 0; i < maxToppings; i++) {
-                    List<String> toppings = new ArrayList<>();
-                    while (true) {
-                        System.out.printf("Enter toppings (separate with\",\"): ", i + 1);
-                        String input = scanner.nextLine().trim();
-
-                        if (input.isEmpty()) {
-                            break;
-                        }
-
-                        String[] chosen = input.split(",\\s*");
-                        if (chosen.length > 1) {
-                            System.out.printf("You can only add %d topping(s) for %s size. Please enter again.\n",
-                                    maxToppings - i, size);
-                            continue;
-                        }
-
-                        toppings.add(i, chosen[0]);
-                        break;
-                    }
-                    System.out.println("Topping added!");
-                }
-            }catch (Exception e){
-                System.out.println("Invalid option. ");
-            }
-
-            pause(100);
-            System.out.println("Add extra toppings? (y/n):");
-            if (scanner.nextLine().equalsIgnoreCase("y")) {
-                pause(100);
-                System.out.println("Enter extra toppings (separate with\",\"):");
-                String inputExtraToppings = scanner.nextLine();
-                if (!inputExtraToppings.isBlank()) {
-                    String[] extraToppings = inputExtraToppings.split(",");
-                    for (String topping : extraToppings) {
-                        iceCream.addTopping(topping.trim());
-                        iceCream.setPrice(iceCream.getPrice() + 0.50);
-                    }
-                    pause(100);
-                    System.out.println(" Added extra toppings: " + String.join(", ", extraToppings));
-                    System.out.printf("New price: $%.2f\n", iceCream.getPrice());
-                }
-            }
-            order.addMenuItem(iceCream);
-            pause(100);
-            System.out.println(" Ice Cream added to your order!");
-        }catch (Exception e) {
-            System.out.println("Invalid option.");
-        }
+        order.addMenuItem(iceCream);
+        System.out.println("Ice Cream added to your order!");
     }
 
     public void orderSmoothie() {
