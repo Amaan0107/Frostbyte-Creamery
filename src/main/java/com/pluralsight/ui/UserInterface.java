@@ -22,6 +22,11 @@ public class UserInterface {
             "Cookies & Cream", "Rocky Road", "Pistachio", "Salted Caramel",
             "Mango", "Coffee"
     );
+    private final List<String> smoothieFlavors = Arrays.asList(
+            "Berry Blast", "Tropical Mango", "Green Detox",
+            "Banana Peanut Butter", "Chocolate Banana"
+    );
+
 
 
     public UserInterface() {
