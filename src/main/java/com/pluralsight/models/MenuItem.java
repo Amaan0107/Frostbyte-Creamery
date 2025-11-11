@@ -8,12 +8,14 @@ public abstract class MenuItem {
     private double price;
     private String size;
     private List<String> toppings;
+    private List<String> flavors;
 
     public MenuItem(String name, double price, String size) {
         this.name = name;
         this.price = price;
         this.size = size;
         this.toppings = new ArrayList<String>();
+        this.flavors = new ArrayList<String>();
     }
 
     public String getName() {
@@ -42,10 +44,18 @@ public abstract class MenuItem {
     public void addTopping(String topping) {
        toppings.add(topping);
     }
+    public List<String> getFlavors() {
+        return flavors;
+    }
+    public void addFlavor(String flavor) {
+        flavors.add(flavor);
+    }
 
     public String getDescription() {
+        String flavorStr = flavors.isEmpty() ? "" :
+                " - Flavors: " + String.join(", ", flavors);
         String toppingStr = toppings.isEmpty() ? "" :
-                " - Flavors/Toppings: " + String.join(", ", toppings);
+                " - Toppings: " + String.join(", ", toppings);
         return name + " (" + size + ")" + toppingStr;
     }
 
