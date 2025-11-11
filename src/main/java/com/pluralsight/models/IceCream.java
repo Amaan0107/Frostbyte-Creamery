@@ -21,7 +21,17 @@ public class IceCream extends MenuItem {
 
     @Override
     public String getDescription() {
-        return getName() + " (" + getSize() + ", " + container + ")" +
-                (getToppings().isEmpty() ? "" : " - Flavors/Toppings: " + String.join(", ", getToppings()));
+        String description = getName() + " (" + getSize() + ", " + container + ")";
+
+        if (!getToppings().isEmpty()) {
+            description += " - Toppings: " + String.join(", ", getToppings());
+        }
+
+        if (!getFlavors().isEmpty()) {
+            description += " - Flavors: " + String.join(", ", getFlavors());
+        }
+
+        return description;
     }
+
 }
