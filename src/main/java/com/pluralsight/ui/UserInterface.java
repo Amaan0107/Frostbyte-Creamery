@@ -201,9 +201,6 @@ public class UserInterface {
             IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
             try {
                 pause(100);
-                System.out.println("Flavors: Chocolate, Vanilla, Strawberry, Mint Chocolate Chip" +
-                                   "Cookies & Cream, Rocky Road, Pistachio, Salted Caramel" +
-                                    "Mango, Coffee");
                 List<String> flavors = new ArrayList<>();
                 for (int i = 0; i < maxFlavors; i++) {
                     while (true) {
@@ -232,9 +229,6 @@ public class UserInterface {
             }
             try {
                 pause(100);
-                System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
-                        "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
-                        "KitKat Pieces, Gummy Bears");
                 for (int i = 0; i < maxToppings; i++) {
                     List<String> toppings = new ArrayList<>();
                     while (true) {
@@ -262,9 +256,6 @@ public class UserInterface {
             }
 
             pause(100);
-            System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
-                                          "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
-                                          "KitKat Pieces, Gummy Bears");
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
                 pause(100);
@@ -302,8 +293,6 @@ public class UserInterface {
                 default -> 5.50;
             };
             Smoothie smoothie = new Smoothie("smoothie", basePrice, size);
-            System.out.println("Smoothie flavors:Berry Blast, Tropical Mango, Green Detox, Banana Peanut Butter" +
-                    "Chocolate Banana");
             pause(100);
             System.out.println("Enter the flavors (separate with\",\"):");
             String inputFlavors = scanner.nextLine().trim();
@@ -315,9 +304,6 @@ public class UserInterface {
             }
 
             pause(100);
-            System.out.println("Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge" +
-                    "Whipped Cream, Sprinkles, Choco Chips, Crushed Oreos" +
-                    "KitKat Pieces, Gummy Bears");
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
                 pause(100);
@@ -356,8 +342,6 @@ public class UserInterface {
             };
             IceCreamCake cake = new IceCreamCake("Ice Cream Cake", basePrice, size);
 
-            System.out.println("Cake flavors: Chocolate Fudge Brownie, Cookies & Cream Delight" +
-                                "Strawberry Shortcake, Mint Chocolate Chip Crunch, Salted Caramel Pretzel");
             System.out.println("Enter the flavor (separate with\",\"):");
             String inputFlavors = scanner.nextLine().trim();
 
@@ -394,6 +378,22 @@ public class UserInterface {
     }catch (Exception e) {
         System.out.println("Invalid option.");}
         return false;
+    }
+    private String askSize() {
+        String size = "";
+        while (true) {
+            try {
+                System.out.print("Enter size (Small/Medium/Large): ");
+                size = scanner.nextLine().trim();
+                if (!size.equalsIgnoreCase("Small") && !size.equalsIgnoreCase("Medium") && !size.equalsIgnoreCase("Large")) {
+                    throw new Exception("Invalid size choice.");
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter Small, Medium, or Large.");
+            }
+        }
+        return size;
     }
 
     private void pause(int milliseconds) {
