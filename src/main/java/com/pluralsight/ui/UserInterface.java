@@ -137,7 +137,7 @@ public class UserInterface {
         }
     }
 
-    public void orderIceCream() {
+    public void orderIceCream() throws Exception {
         String container = null;
         try {
             pause(100);
@@ -208,10 +208,7 @@ public class UserInterface {
 
     public void orderIceCreamCake() {
         try {
-            pause(100);
-            System.out.println("Enter Size (Small, Medium, Large):");
-            String size = scanner.nextLine().trim();
-
+            String size = askSize();
             double basePrice = switch (size.toLowerCase()) {
                 case "small" -> 12.00;
                 case "medium" -> 16.50;
@@ -220,18 +217,12 @@ public class UserInterface {
             };
             IceCreamCake cake = new IceCreamCake("Ice Cream Cake", basePrice, size);
 
-            System.out.println("Enter the flavor (separate with\",\"):");
-            String inputFlavors = scanner.nextLine().trim();
+            System.out.println("Available flavors: " + String.join(", ", cakeFlavors));
+            chooseFlavorsWithValidation(cake, cakeFlavors, 1);
 
-            if(!inputFlavors.isBlank()) {
-                cake.addTopping(inputFlavors.trim());
-            }else  {
-                System.out.println("Invalid option. Please enter a valid flavor.");
-            }
             order.addMenuItem(cake);
-            pause(100);
-            System.out.println(" Ice Cream Cake added to your order!");
-        }catch (Exception e) {
+            System.out.println("Ice Cream Cake added to your order!");
+        }catch (Exception e){
             System.out.println("Invalid option.");
         }
     }
@@ -272,25 +263,30 @@ public class UserInterface {
         }
         return size;
     }
-    private void chooseFlavorsWithValidation(MenuItem item, List<String> available, int max) {
+    private void chooseFlavorsWithValidation(MenuItem item, List<String> available, int max) throws Exception {
         while (true) {
-            try {
-                System.out.println("Choose up to " + max + " flavor(s), separated by commas:");
-                String input = scanner.nextLine().trim();
-                String[] chosen = input.split(",\\s*");
-                item.getFlavors().clear();
-                for (int i = 0; i < Math.min(max, chosen.length); i++) {
-                    if (!available.contains(chosen[i].trim())) {
-                        throw new Exception("Invalid flavor choice: " + chosen[i].trim());
-                    }
-                    item.addFlavor(chosen[i].trim());
+            System.out.println("Choose up to " + max + " flavor(s), separated by commas:");
+            String input = scanner.nextLine().trim();
+            String[] chosen = input.split(",\\s*");
+            item.getFlavors().clear();
+            for (int i = 0; i < Math.min(max, chosen.length); i++) {
+                String userFlavor = chosen[i].trim();
+
+                String match = available.stream()
+                        .filter(f -> f.equalsIgnoreCase(userFlavor))
+                        .findFirst()
+                        .orElse(null);
+
+                if ((match == null)) {
+                    throw new Exception("Invalid flavor choice: " + userFlavor);
                 }
-                break;
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please choose flavors from the list.");
+                item.addFlavor(match);
+            }
+            break;
+
             }
         }
-    }
+
     private void chooseToppingsWithValidation(MenuItem item, int max) {
         while (true) {
             try {
@@ -299,10 +295,17 @@ public class UserInterface {
                 String[] chosen = input.split(",\\s*");
                 item.getToppings().clear();
                 for (int i = 0; i < Math.min(max, chosen.length); i++) {
-                    if (!toppingsList.contains(chosen[i].trim())) {
-                        throw new Exception("Invalid topping choice: " + chosen[i].trim());
+                    String userTopping = chosen[i].trim();
+
+                    String match = toppingsList.stream()
+                            .filter(t -> t.equalsIgnoreCase(userTopping))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (match == null) {
+                        throw new Exception("Invalid topping choice: " + userTopping);
                     }
-                    item.addTopping(chosen[i].trim());
+                    item.addTopping(match);
                 }
                 break;
             } catch (Exception e) {
@@ -318,12 +321,19 @@ public class UserInterface {
                 String input = scanner.nextLine().trim();
                 String[] extra = input.split(",\\s*");
                 for (String t : extra) {
-                    if (!t.isEmpty()) {
-                        item.addTopping(t);
-                        item.setPrice(item.getPrice() + 0.50);
+                    String userTopping = t.trim();
+
+
+                    String match = toppingsList.stream()
+                            .filter(top -> top.equalsIgnoreCase(userTopping))
+                            .findFirst()
+                            .orElse(userTopping);
+
+                    item.addTopping(match);
+                    item.setPrice(item.getPrice() + 0.50);
                     }
                 }
-            }
+
         } catch (Exception e) {
             System.out.println("Error adding extra toppings.");
         }
