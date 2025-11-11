@@ -6,12 +6,15 @@ import com.pluralsight.models.Smoothie;
 import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
 
     private Scanner scanner;
     private Order order;
+    private String[] toppings;
 
     public UserInterface() {
         scanner = new Scanner(System.in);
@@ -144,26 +147,92 @@ public class UserInterface {
                 case "large" -> 5.50;
                 default -> 4.50;
             };
+            int maxToppings = 0;
+            switch (size) {
+                case "small":
+                    maxToppings = 1;
+                    break;
+                case "medium":
+                    maxToppings = 2;
+                    break;
+                case "large":
+                    maxToppings = 3;
+                    break;
+                default:
+                    System.out.println("Invalid size. Defaulting to small.");
+                    maxToppings = 1;
+            }
+            int maxFlavors = 0;
+            switch (size) {
+                case "small":
+                    maxFlavors = 1;
+                    break;
+                case "medium":
+                    maxFlavors = 2;
+                    break;
+                case "large":
+                    maxFlavors = 3;
+                    break;
+                default:
+                    System.out.println("Invalid size. Defaulting to small.");
+                    maxFlavors = 1;
+            }
+            System.out.println("You may choose up to " + maxFlavors + " flavors.");
+            System.out.println("You may choose up to " + maxToppings + " toppings.");
 
             IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
+            try {
+                pause(100);
+                List<String> flavors = new ArrayList<>();
+                for (int i = 0; i < maxFlavors; i++) {
+                    while (true) {
+                        System.out.printf("Enter Flavors %d: ", i + 1);
+                        String input = scanner.nextLine().trim();
 
-            pause(100);
-            System.out.println("Enter the flavors you want (separate by commas):");
-            String inputFlavors = scanner.nextLine();
-            String[] flavors = inputFlavors.split(",");
-            for (String flavor : flavors) {
-                iceCream.addTopping(flavor.trim());
-            }
+                        if (input.isEmpty()) {
+                            break;
+                        }
 
-            pause(100);
-            System.out.println("Enter up to 3 toppings (separate by commas, or leave empty):");
-            String inputToppings = scanner.nextLine();
-            if (!inputToppings.isBlank()) {
-                String[] toppings = inputToppings.split(",");
-                for (String topping : toppings) {
-                    iceCream.addTopping(topping.trim());
+                        String[] chosen = input.split(",\\s*");
+                        if (chosen.length > 1) {
+                            System.out.printf("You can only add %d flavors(s) for %s size. Please enter again.\n",
+                                    maxFlavors - i, size);
+                            continue;
+                        }
+
+                        flavors.add(i, chosen[0]);
+                        break;
+
+                    }
+                    System.out.println("Ice cream Added!");
                 }
+            }catch (Exception e){
+                System.out.println("Invalid option. ");
             }
+            pause(100);
+            for (int i = 0; i < maxToppings; i++) {
+                List<String> toppings = new ArrayList<>();
+                while (true) {
+                    System.out.printf("Enter topping %d: ", i + 1);
+                    String input = scanner.nextLine().trim();
+
+                    if (input.isEmpty()) {
+                        break;
+                    }
+
+                    String[] chosen = input.split(",\\s*");
+                    if (chosen.length > 1) {
+                        System.out.printf("You can only add %d topping(s) for %s size. Please enter again.\n",
+                                maxToppings - i, size);
+                        continue;
+                    }
+
+                    toppings.add(i, chosen[0]);
+                    break;
+                }
+                System.out.println("Topping added!");
+            }
+
             pause(100);
             System.out.println("Add extra toppings? (y/n):");
             if (scanner.nextLine().equalsIgnoreCase("y")) {
