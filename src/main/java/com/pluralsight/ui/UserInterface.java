@@ -395,6 +395,45 @@ public class UserInterface {
         }
         return size;
     }
+    private void chooseFlavorsWithValidation(MenuItem item, List<String> available, int max) {
+        while (true) {
+            try {
+                System.out.println("Choose up to " + max + " flavor(s), separated by commas:");
+                String input = scanner.nextLine().trim();
+                String[] chosen = input.split(",\\s*");
+                item.getFlavors().clear();
+                for (int i = 0; i < Math.min(max, chosen.length); i++) {
+                    if (!available.contains(chosen[i].trim())) {
+                        throw new Exception("Invalid flavor choice: " + chosen[i].trim());
+                    }
+                    item.addFlavor(chosen[i].trim());
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please choose flavors from the list.");
+            }
+        }
+    }
+    private void chooseToppingsWithValidation(MenuItem item, int max) {
+        while (true) {
+            try {
+                System.out.println("Choose up to " + max + " topping(s), separated by commas:");
+                String input = scanner.nextLine().trim();
+                String[] chosen = input.split(",\\s*");
+                item.getToppings().clear();
+                for (int i = 0; i < Math.min(max, chosen.length); i++) {
+                    if (!toppingsList.contains(chosen[i].trim())) {
+                        throw new Exception("Invalid topping choice: " + chosen[i].trim());
+                    }
+                    item.addTopping(chosen[i].trim());
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please choose toppings from the list.");
+            }
+        }
+    }
+
 
     private void pause(int milliseconds) {
         try {
