@@ -362,7 +362,6 @@ public class UserInterface {
         try{
         System.out.println("\n======== Checkout ========");
         if (order.getMenuItems().isEmpty()) {
-            pause(100);
             System.out.println("No items in order!");
             return true;
         }
@@ -433,7 +432,24 @@ public class UserInterface {
             }
         }
     }
-
+    private void extraToppings(MenuItem item) {
+        try {
+            System.out.print("Add extra toppings for $0.50 each? (y/n): ");
+            if (scanner.nextLine().trim().equalsIgnoreCase("y")) {
+                System.out.println("Enter extra toppings, separated by commas:");
+                String input = scanner.nextLine().trim();
+                String[] extra = input.split(",\\s*");
+                for (String t : extra) {
+                    if (!t.isEmpty()) {
+                        item.addTopping(t);
+                        item.setPrice(item.getPrice() + 0.50);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error adding extra toppings.");
+        }
+    }
 
     private void pause(int milliseconds) {
         try {
