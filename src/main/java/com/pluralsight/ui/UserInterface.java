@@ -31,6 +31,11 @@ public class UserInterface {
             "Strawberry Shortcake", "Mint Chocolate Chip Crunch",
             "Salted Caramel Pretzel"
     );
+    private final List<String> toppingsList = Arrays.asList(
+            "Chocolate Syrup", "Caramel Syrup", "Strawberry Syrup", "Hot Fudge",
+            "Whipped Cream", "Sprinkles", "Choco Chips", "Crushed Oreos",
+            "KitKat Pieces", "Gummy Bears"
+    );
 
 
     public UserInterface() {
@@ -72,13 +77,9 @@ public class UserInterface {
             while (running) {
 
                 System.out.println("======== Home Screen ========");
-                pause(100);
                 System.out.println("1) Order");
-                pause(100);
                 System.out.println("0) Exit");
-                pause(100);
                 System.out.printf("Enter your choice: ");
-                pause(100);
                 int choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
@@ -103,21 +104,13 @@ public class UserInterface {
 
             while (ordering) {
                 System.out.println("======== Order menu ========");
-                pause(100);
                 System.out.println("1) Order Ice cream");
-                pause(100);
                 System.out.println("2) Order Smoothie");
-                pause(100);
                 System.out.println("3) Order Ice cream Cake");
-                pause(100);
                 System.out.println("4) CheckOut");
-                pause(100);
                 System.out.println("5) Menu");
-                pause(100);
                 System.out.println("0) Cancel");
-                pause(100);
-                System.out.printf("Enter your choice: ");
-                pause(100);
+                System.out.printf("Enter your choice: ");;
                 int choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
