@@ -72,6 +72,8 @@ public class UserInterface {
 
     public void start() {
         try {
+            showIntro();
+            shopMenu();
 
             boolean running = true;
             while (running) {
