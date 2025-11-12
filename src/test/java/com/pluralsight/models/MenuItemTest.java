@@ -1,4 +1,7 @@
 package com.pluralsight.models;
 
-public class MenuItemTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class MenuItemTest {
+
 }
