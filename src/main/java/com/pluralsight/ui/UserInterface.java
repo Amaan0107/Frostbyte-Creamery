@@ -5,6 +5,7 @@ import com.pluralsight.models.IceCreamCake;
 import com.pluralsight.models.Smoothie;
 import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
+import com.pluralsight.util.Receipt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class UserInterface {
                 "██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝",
                 "╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗",
                 "╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝",
-                "           🍦 to FirstBytes Creamery 🍦     \n"};
+                "           🍦 to FrostBytes Creamery 🍦     \n"};
         for (String line : intro) {
             System.out.println(line);
             try {
@@ -202,7 +203,7 @@ public class UserInterface {
 
             order.addMenuItem(smoothie);
             System.out.println("Smoothie added to your order!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Invalid option.");
         }
     }
@@ -224,13 +225,12 @@ public class UserInterface {
 
             order.addMenuItem(cake);
             System.out.println("Ice Cream Cake added to your order!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Invalid option.");
         }
     }
 
     private boolean checkout() {
-        try{
         System.out.println("\n======== Checkout ========");
         if (order.getMenuItems().isEmpty()) {
             System.out.println("No items in order!");
@@ -244,10 +244,19 @@ public class UserInterface {
         System.out.println("Calculating your total!");
         pause(500);
         System.out.printf("Total: $%.2f\n", order.CalculatePrice());
-        System.out.println("Thank you for your order!\n");
-    }catch (Exception e) {
-        System.out.println("Invalid option.");}
-        return false;
+        try {
+            Receipt receipt = new Receipt(order);
+            receipt.saveReceipt();
+
+            System.out.println("Receipt saved!");
+            System.out.println("Thank you for your order!");
+            return false;
+
+
+        } catch (Exception e) {
+            System.out.println("RECEIPT NOT SAVED!.");
+            return false;
+        }
     }
     private String askSize() {
         String size = "";
