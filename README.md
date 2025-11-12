@@ -42,6 +42,8 @@ Java 17, IntelliJ IDEA, Object-Oriented Programming Principles
 ---
 
 ## Project Structure 
+<img width="380" height="487" alt="Screenshot 2025-11-12 153528" src="https://github.com/user-attachments/assets/42aa7728-623a-449a-bf9a-a45d276233e3" />
+<img width="493" height="418" alt="Screenshot 2025-11-12 153534" src="https://github.com/user-attachments/assets/a1e25563-d5cf-4918-a9e7-83e06db631a8" />
 
 
 ---
