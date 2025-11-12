@@ -12,8 +12,7 @@ public class Smoothie extends MenuItem {
         if (!getFlavors().isEmpty()) {
             description += " - Flavors: " + String.join(", ", getFlavors());
         }
-
-        if (!getToppings().isEmpty()) { // optional: smoothies can have toppings
+        if (!getToppings().isEmpty()) {
             description += " - Toppings: " + String.join(", ", getToppings());
         }
 

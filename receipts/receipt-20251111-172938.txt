@@ -1,0 +1,9 @@
+======= Frostbyte Creamery Receipt =======
+
+Order Date: 2025-11-11 17:29:38
+------------------------------------------
+Ice Cream (small, cone) - Toppings: Caramel Syrup - Flavors: Chocolate
+------------------------------------------
+Total: $3.50
+Thank you for visiting Frostbyte Creamery!
+==========================================

@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+
 import com.pluralsight.models.IceCream;
 import com.pluralsight.models.IceCreamCake;
 import com.pluralsight.models.Smoothie;
@@ -7,7 +8,7 @@ import com.pluralsight.util.Order;
 import com.pluralsight.models.MenuItem;
 import com.pluralsight.util.Receipt;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -164,8 +165,10 @@ public class UserInterface {
             case "large" -> 5.50;
             default -> 4.50;
         };
-        int maxFlavors = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase("medium") ? 2 : 3;
-        int maxToppings = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase("medium") ? 2 : 3;
+        int maxFlavors = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
+                ("medium") ? 2 : 3;
+        int maxToppings = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
+                ("medium") ? 2 : 3;
 
         IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
 
@@ -176,7 +179,7 @@ public class UserInterface {
 
         System.out.println("Available toppings: " + String.join(", ", toppingsList));
         chooseToppingsWithValidation(iceCream, maxToppings);
-// Extra toppings
+
         extraToppings(iceCream);
 
         order.addMenuItem(iceCream);
@@ -184,7 +187,7 @@ public class UserInterface {
     }
 
     public void orderSmoothie() {
-        MenuItem smoothie = null;
+
         try {
             String size = askSize();
             double basePrice = switch (size.toLowerCase()) {
@@ -193,18 +196,18 @@ public class UserInterface {
                 case "large" -> 7.10;
                 default -> 5.50;
             };
+
+            Smoothie smoothie = new Smoothie("Smoothie", basePrice, size);
             System.out.println("Available flavors: " + String.join(", ", smoothieFlavors));
-            chooseFlavorsWithValidation(smoothie, smoothieFlavors, 2);
+            chooseFlavorsWithValidation(smoothie, smoothieFlavors, 1);
 
             System.out.println("Available toppings: " + String.join(", ", toppingsList));
-            chooseToppingsWithValidation(smoothie, 2);
-
             extraToppings(smoothie);
 
             order.addMenuItem(smoothie);
             System.out.println("Smoothie added to your order!");
         } catch (Exception e) {
-            System.out.println("Invalid option.");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -248,7 +251,6 @@ public class UserInterface {
             Receipt receipt = new Receipt(order);
             receipt.saveReceipt();
 
-            System.out.println("Receipt saved!");
             System.out.println("Thank you for your order!");
             return false;
 
@@ -264,7 +266,8 @@ public class UserInterface {
             try {
                 System.out.print("Enter size (Small/Medium/Large): ");
                 size = scanner.nextLine().trim();
-                if (!size.equalsIgnoreCase("Small") && !size.equalsIgnoreCase("Medium") && !size.equalsIgnoreCase("Large")) {
+                if (!size.equalsIgnoreCase("Small") && !size.equalsIgnoreCase("Medium")
+                        && !size.equalsIgnoreCase("Large")) {
                     throw new Exception("Invalid size choice.");
                 }
                 break;

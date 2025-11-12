@@ -17,7 +17,6 @@ public class Receipt {
     public void saveReceipt() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            writer.println("==================================");
             writer.println("Order Date: " + order.getOrderDate().format(dateFormatter));
             writer.println("----------------------------------");
 

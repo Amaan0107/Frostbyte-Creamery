@@ -1,0 +1,40 @@
+==================================
+Order Date: 2025-11-11 17:33:56
+----------------------------------
+Ice Cream (small, cone) - Toppings: Caramel Syrup - Flavors: Chocolate
+Ice Cream (small, 0) - Toppings: Caramel Syrup - Flavors: Chocolate
+Total: $7.00
+==================================
+
+==================================
+Order Date: 2025-11-12 08:18:48
+----------------------------------
+Smoothie (medium)
+Total: $6.50
+==================================
+
+==================================
+Order Date: 2025-11-12 08:21:19
+----------------------------------
+Ice Cream Cake (medium) - Flavors: Cookies & Cream Delight
+Total: $16.50
+==================================
+
+Order Date: 2025-11-12 08:23:59
+----------------------------------
+Smoothie (medium)
+Total: $6.50
+==================================
+
+Order Date: 2025-11-12 08:26:58
+----------------------------------
+Smoothie (medium) - Flavors: Berry Blast
+Total: $6.50
+==================================
+
+Order Date: 2025-11-12 09:45:50
+----------------------------------
+Ice Cream (medium, cone) - Toppings: Chocolate Syrup, Caramel Syrup - Flavors: Chocolate, Vanilla
+Total: $4.50
+==================================
+

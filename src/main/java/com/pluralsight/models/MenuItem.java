@@ -3,7 +3,7 @@ package com.pluralsight.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MenuItem {
+public class MenuItem {
     private String name;
     private double price;
     private String size;

@@ -1,0 +1,7 @@
+===== FirstBytes Creamery Receipt =====
+Order Date: 2025-11-11 17:11:44
+
+Ice Cream (small, cone) - Toppings: Chocolate Syrup - Flavors: Chocolate - $3.50
+
+Total: $3.50
+======================================
