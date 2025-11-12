@@ -7,8 +7,8 @@ public class MenuItem {
     private String name;
     private double price;
     private String size;
-    private List<String> toppings;
-    private List<String> flavors;
+    private final List<String> toppings;
+    private final List<String> flavors;
 
     public MenuItem(String name, double price, String size) {
         this.name = name;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<MenuItem> menuItems;
+    private final List<MenuItem> menuItems;
 
     LocalDateTime orderDate;
 

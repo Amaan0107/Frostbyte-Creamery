@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private Order order;
 
     private final List<String> iceCreamFlavors = Arrays.asList(
@@ -67,6 +67,7 @@ public class UserInterface {
                 System.out.print("|");
             }
         } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("\n Shop Ready!\n");
@@ -83,13 +84,13 @@ public class UserInterface {
                 System.out.println("======== Home Screen ========");
                 System.out.println("1) Order");
                 System.out.println("0) Exit");
-                System.out.printf("Enter your choice: ");
+                System.out.print("Enter your choice: ");
                 int choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
                     case 1 -> newOrder();
                     case 0 -> {
-                        if (running = false) {
+                        if (!running) {
                             System.out.println("Please visit FrostBytes again !!!");
                         }
                     }
@@ -114,8 +115,7 @@ public class UserInterface {
                 System.out.println("4) CheckOut");
                 System.out.println("5) Menu");
                 System.out.println("0) Cancel");
-                System.out.printf("Enter your choice: ");
-                ;
+                System.out.print("Enter your choice: ");
                 int choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
