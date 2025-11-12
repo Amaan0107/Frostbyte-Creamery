@@ -16,5 +16,12 @@ public class IceCreamTest {
         assertTrue(desc.contains("Chocolate"));
         assertTrue(desc.contains("Sprinkles"));
     }
+    @Test
+    void testContainerGetterSetter() {
+        IceCream iceCream = new IceCream("Vanilla", 3.5, "Small", "Bowl");
+        assertEquals("Bowl", iceCream.getContainer());
 
+        iceCream.setContainer("Cone");
+        assertEquals("Cone", iceCream.getContainer());
+    }
 }
