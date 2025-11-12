@@ -23,14 +23,14 @@ class MenuItemTest {
     }
     @Test
     public void testGetDescriptionWithToppingsAndFlavors() {
-        MenuItem item = new MenuItem("Ice Cream", 3.50, "Small");
+        MenuItem item = new MenuItem("Ice Cream", 3.50, "Medium");
         item.addTopping("Sprinkles");
         item.addFlavor("Chocolate");
 
         String desc = item.getDescription();
         assertTrue(desc.contains("Sprinkles"));
         assertTrue(desc.contains("Chocolate"));
-        assertTrue(desc.contains("Small"));
+        assertTrue(desc.contains("Medium"));
     }
 
 }
