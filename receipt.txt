@@ -38,3 +38,11 @@ Ice Cream (medium, cone) - Toppings: Chocolate Syrup, Caramel Syrup - Flavors: C
 Total: $4.50
 ==================================
 
+Order Date: 2025-11-12 12:23:10
+----------------------------------
+Ice Cream (large, cone) - Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudg - Flavors: Chocolate, Vanilla, Strawberry
+Smoothie (medium) - Flavors: Berry Blast
+Ice Cream Cake (large) - Flavors: Cookies & Cream Delight
+Total: $35.00
+==================================
+
