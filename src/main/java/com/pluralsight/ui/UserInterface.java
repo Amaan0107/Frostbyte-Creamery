@@ -81,7 +81,7 @@ public class UserInterface {
             boolean running = true;
             while (running) {
 
-                System.out.println("======== Home Screen ========");
+                System.out.println("======== Home Screen 🏠 ========");
                 System.out.println("1) Order");
                 System.out.println("0) Exit");
                 System.out.print("Enter your choice: ");
@@ -108,13 +108,13 @@ public class UserInterface {
             boolean ordering = true;
 
             while (ordering) {
-                System.out.println("======== Order menu ========");
-                System.out.println("1) Order Ice cream");
-                System.out.println("2) Order Smoothie");
-                System.out.println("3) Order Ice cream Cake");
-                System.out.println("4) CheckOut");
-                System.out.println("5) Menu");
-                System.out.println("0) Cancel");
+                System.out.println("======== Order menu 📋 ========");
+                System.out.println("1) Order Ice cream 🍦");
+                System.out.println("2) Order Smoothie 🥛");
+                System.out.println("3) Order Ice cream Cake 🍰");
+                System.out.println("4) CheckOut ✅");
+                System.out.println("5) Menu 🧾");
+                System.out.println("0) Cancel ❌");
                 System.out.print("Enter your choice: ");
                 int choice = Integer.parseInt(scanner.nextLine());
 
@@ -272,7 +272,7 @@ public class UserInterface {
         }
     }
     private String askSize() {
-        String size = "";
+        String size = null;
         while (true) {
             try {
                 System.out.print("Enter size (Small/Medium/Large): ");
