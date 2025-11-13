@@ -38,6 +38,9 @@ Java 17, IntelliJ IDEA, Object-Oriented Programming Principles
 
 ### Interesting code
 
+<img width="1122" height="625" alt="Screenshot 2025-11-13 085946" src="https://github.com/user-attachments/assets/be6d8f12-5408-4bc9-9be6-bc67c1cc1b57" />
+
+This code is the most interesting and useful to me because of its validation loop, which ensures the user picks only valid flavors or toppings from the available selection. It prevents invalid input and makes the program more user-friendly and reliable. The same method could also be reused across three menu sections — Ice Cream, Smoothie, and Ice Cream Cake — making the code more efficient and reducing repetition.
 
 ---
 
