@@ -60,4 +60,7 @@ This code is the most interesting and useful to me because of its validation loo
 ### Extra pics of code
 
 
-
+<img width="1191" height="823" alt="Screenshot 2025-11-13 090400" src="https://github.com/user-attachments/assets/7a18982a-781b-436b-b3bf-7ffba0f5569b" />
+<img width="1271" height="818" alt="Screenshot 2025-11-13 090419" src="https://github.com/user-attachments/assets/de371e0d-99bd-439d-8898-582ef8c23dd7" />
+<img width="1676" height="785" alt="Screenshot 2025-11-13 100659" src="https://github.com/user-attachments/assets/751ab534-cde5-4775-bb0b-f5ad0a1f58fd" />
+<img width="1701" height="795" alt="Screenshot 2025-11-13 100714" src="https://github.com/user-attachments/assets/5731f409-7ac7-4e4e-8c0a-b387ce081153" />
