@@ -40,9 +40,21 @@ Total: $4.50
 
 Order Date: 2025-11-12 12:23:10
 ----------------------------------
-Ice Cream (large, cone) - Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudg - Flavors: Chocolate, Vanilla, Strawberry
+Ice Cream (large, cone) - Toppings: Chocolate Syrup, Caramel Syrup, Strawberry Syrup, Hot Fudge - Flavors: Chocolate, Vanilla, Strawberry
 Smoothie (medium) - Flavors: Berry Blast
 Ice Cream Cake (large) - Flavors: Cookies & Cream Delight
 Total: $35.00
+==================================
+
+Order Date: 2025-11-12 14:18:31
+----------------------------------
+Smoothie (large) - Flavors: Tropical Mango - Toppings: Whipped Cream
+Total: $7.60
+==================================
+
+Order Date: 2025-11-12 15:10:15
+----------------------------------
+Ice Cream (MeDiUm, cone) - Toppings: Chocolate Syrup, Caramel Syrup - Flavors: Chocolate, Vanilla
+Total: $4.50
 ==================================
 

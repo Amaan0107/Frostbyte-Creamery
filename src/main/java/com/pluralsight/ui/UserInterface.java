@@ -143,48 +143,54 @@ public class UserInterface {
 
     public void orderIceCream() throws Exception {
         String container = null;
-        try {
+        while (true) {
             pause(100);
             System.out.println("Enter Cone/Bowl:");
-            container = scanner.nextLine();
+            container = scanner.nextLine().toLowerCase();
 
             if (container.equalsIgnoreCase("cone")) {
                 System.out.println("You chose a Cone!");
+                break;
             } else if (container.equalsIgnoreCase("bowl")) {
                 System.out.println("You chose a Bowl!");
+                break;
             } else {
                 System.out.println("Invalid option. Please enter Cone or Bowl.");
             }
-        } catch (Exception e) {
-            System.out.println("Invalid option.");
         }
-        String size = askSize();
-        double basePrice = switch (size.toLowerCase()) {
-            case "small" -> 3.50;
-            case "medium" -> 4.50;
-            case "large" -> 5.50;
-            default -> 4.50;
-        };
-        int maxFlavors = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
-                ("medium") ? 2 : 3;
-        int maxToppings = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
-                ("medium") ? 2 : 3;
 
-        IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
+    String size = askSize();
+    double basePrice = switch (size.toLowerCase()) {
+        case "small" -> 3.50;
+        case "medium" -> 4.50;
+        case "large" -> 5.50;
+        default -> 4.50;
+    };
+    int maxFlavors = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
+            ("medium") ? 2 : 3;
+    int maxToppings = size.equalsIgnoreCase("small") ? 1 : size.equalsIgnoreCase
+            ("medium") ? 2 : 3;
 
-
-        System.out.println("Available flavors: " + String.join(", ", iceCreamFlavors));
-        chooseFlavorsWithValidation(iceCream, iceCreamFlavors, maxFlavors);
+    IceCream iceCream = new IceCream("Ice Cream", basePrice, size, container);
 
 
-        System.out.println("Available toppings: " + String.join(", ", toppingsList));
-        chooseToppingsWithValidation(iceCream, maxToppings);
+        System.out.println("Available flavors: "+String.join(", ",iceCreamFlavors));
 
-        extraToppings(iceCream);
+    chooseFlavorsWithValidation(iceCream, iceCreamFlavors, maxFlavors);
 
+
+        System.out.println("Available toppings: "+String.join(", ",toppingsList));
+
+    chooseToppingsWithValidation(iceCream, maxToppings);
+
+    extraToppings(iceCream);
+
+    double totalPrice = iceCream.getPrice();
         order.addMenuItem(iceCream);
+        System.out.printf("Your Ice Cream total: $%.2f%n",totalPrice);
         System.out.println("Ice Cream added to your order!");
-    }
+}
+
 
     public void orderSmoothie() {
 
@@ -204,12 +210,15 @@ public class UserInterface {
             System.out.println("Available toppings: " + String.join(", ", toppingsList));
             extraToppings(smoothie);
 
+            double totalPrice = smoothie.getPrice();
             order.addMenuItem(smoothie);
+            System.out.printf("Your Smoothie total: $%.2f%n", totalPrice);
             System.out.println("Smoothie added to your order!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
 
 
     public void orderIceCreamCake() {
@@ -226,7 +235,9 @@ public class UserInterface {
             System.out.println("Available flavors: " + String.join(", ", cakeFlavors));
             chooseFlavorsWithValidation(cake, cakeFlavors, 1);
 
+            double totalPrice = cake.getPrice();
             order.addMenuItem(cake);
+            System.out.printf("Your Ice Cream Cake total: $%.2f%n", totalPrice);
             System.out.println("Ice Cream Cake added to your order!");
         } catch (Exception e) {
             System.out.println("Invalid option.");
